@@ -1,37 +1,31 @@
+import java.util.Scanner;
 
-/**
- * Write a description of class ProblemDNA here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class ProblemDNA
-{
-    public static void main() {
-        // replace this string with the one from Project Rosalind
-        final String data = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC";
-        final int[] exampleExpectedCounts = new int[]{20,12,17,21};
-        int[] output = nucleotideCounts(data);
-        // you can copy and paste from the terminal window into 
-        //   Project Rosalind to check your answer
-        System.out.println(formatData(output));
-    }
-    
-    // This should take the array of counts and return a 
-    //   space-delimited String with the respective counts
-    //   in A C G T order
-    private static String formatData(int[] counts) {
-        String output = "";
-        for( int count : counts ) {
-            output += count + " ";
+public class FindMotif {
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        // Read the big DNA string
+        String big = input.nextLine();
+
+        // Read the small DNA string (motif)
+        String small = input.nextLine();
+
+        // Start checking each position
+        int i = 0;
+
+        while (i <= big.length() - small.length()) {
+
+            // Get part of the big string
+            String part = big.substring(i, i + small.length());
+
+            // Compare it to the motif
+            if (part.equals(small)) {
+                System.out.print(i + 1);
+                System.out.print(" ");
+            }
+
+            i = i + 1;  // move to next position
         }
-        return output; 
-    }
-    
-    // This should take the given string and return an int
-    //   array of how many times each letter occurs in the 
-    //   string. Ideally in A C G T order. 
-    private static int[] nucleotideCounts(String dnaString) {
-        return new int[]{20,12,17,21};
     }
 }
